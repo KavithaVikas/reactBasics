@@ -10,7 +10,7 @@ let config = {
         filename: 'bundle.js'
     },
     plugins: [
-        new HtmlWebpackPlugin({ // Create HTML file that includes references to bundled CSS and JS.
+        new HtmlWebpackPlugin({ 
             template: 'src/app/index.html',
             minify: {
                 removeComments: true,
