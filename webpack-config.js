@@ -1,5 +1,7 @@
 let webpack = require('webpack');
 let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 let config = {
     entry: path.resolve(__dirname, 'src/app/index.jsx'),
@@ -7,10 +9,20 @@ let config = {
         path: path.resolve(__dirname, 'src/app/dist'),
         filename: 'bundle.js'
     },
+    plugins: [
+        new HtmlWebpackPlugin({ // Create HTML file that includes references to bundled CSS and JS.
+            template: 'src/app/index.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            },
+            inject: true
+        }),
+    ],
     module: {
         loaders: [{
             test: /\.jsx?/,
-            include: path.resolve(__dirname,'src'),
+            include: path.resolve(__dirname, 'src'),
             loader: 'babel-loader'
 
         }]
